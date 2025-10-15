@@ -12,7 +12,7 @@ const dbConfig = {
     host: '103.130.217.240',
     user: 'akstorei_firebasekiet',
     password: '2006@lhu',
-    database: 'akstorei_demo',
+    database: 'akstorei_quanlybanhang',
     port: 3306,
     waitForConnections: true,
     connectionLimit: 10,
