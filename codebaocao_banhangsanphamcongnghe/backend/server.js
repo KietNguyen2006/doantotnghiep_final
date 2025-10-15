@@ -381,3 +381,19 @@ app.listen(PORT, async () => {
         process.exit(1);
     }
 });
+if (process.env.VERCEL === "1") {
+    module.exports = app; // ✅ Cho Vercel xử lý server
+} else {
+    app.listen(PORT, async () => {
+        try {
+            const conn = await pool.getConnection();
+            console.log(`✅ Đã kết nối MySQL '${dbConfig.database}'.`);
+            conn.release();
+            await initializeDatabase();
+            console.log(`🚀 Server chạy tại http://localhost:${PORT}`);
+        } catch (err) {
+            console.error("❌ Lỗi kết nối MySQL:", err.message);
+            process.exit(1);
+        }
+    });
+}
